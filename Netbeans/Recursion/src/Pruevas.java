@@ -133,11 +133,24 @@ public class Pruevas {
         return sB.toString();
     }
     
+    public static int[][] sumaMatrices(int[][] m1, int[][] m2){
+        int[][] res = new int[m1.length][m1[0].length];
+        
+        for (int i=0; i < m1.length; i++) 
+            for (int j=0; j < m1[0].length; j++)
+                res [i][j] = m1[i][j] + m2[i][j];
+        
+        return res;
+    }
+    
     public static void main(String[] args) {
         int[] a = {1, 2, 3, 4, 5, 6};
         int[] b = null;
         int[] c = {3, 2, 4, 1, 8};
         int[][] d = {{1, 2},
+                     {1, 1}};
+        
+        int[][] g = {{1, 2},
                      {1, 1}};
         int[][] e = {{1, 1, 1},
                      {2, 2, 2}};
@@ -145,6 +158,11 @@ public class Pruevas {
         int f[][] = {{1, 3, 1},
                     {1, 1, 1},
                     {4, 1, 1}};
+        
+        for (int i=0; i < f.length; i++) 
+            for (int j=0; j < f[0].length; j++)
+                System.out.println(f[i][j]);
+        
 
         System.out.println("Suma arreglo recursivo: " + sumaArreglo(a));
 
@@ -168,6 +186,8 @@ public class Pruevas {
             System.out.print(c[i] + " ");
         }
         
+        
+        
         System.out.println("\nSuma por renglon: "+ sumaPorRenglon(f,0));
         System.out.println("\nSuma total por renglones: " + sumaTotalPorRenglones(f));
         
@@ -175,5 +195,17 @@ public class Pruevas {
         System.out.println("\nSuma total por columnas " + sumaTotalPorColumnas(f));
         
         System.out.println("\nString por renglones: " + regresaStringRenglon(f,0));
+        
+        
+        int[][] res = sumaMatrices(d,g);
+                
+        for(int[] row : res) {
+            for (int column : row) {
+                System.out.print(column + "    ");
+            }
+            System.out.println();
+        }
+        
+        
     }
 }

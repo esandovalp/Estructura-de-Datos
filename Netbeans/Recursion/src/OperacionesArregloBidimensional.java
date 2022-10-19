@@ -101,35 +101,6 @@ public class OperacionesArregloBidimensional {
        
        return suma;
    }
-   
-   // 5) sumaMatrices: suma dos matrices y regresa la matriz resultado.
-   
-   public static String sumaMatrices(int[][] m1, int[][] m2) {
-       int renglones = m1.length;
-       int columnas = m1[0].length;
-       
-       int[][] res = new int[renglones][columnas];
-       
-       if (m1.length != m2.length || m1[0].length != m2[0].length)
-           throw new RuntimeException("Las matrices no tienen el mismo tamaño");
-       
-       return sumaMatrices(m1, m2, 0, 0, res );
-   }
-   
-   private static String sumaMatrices(int[][] m1, int[][] m2, int contR, int cont, int[][] res){
-       int i=0;
-       
-       if (contR < res.length && cont < res.length){
-           res[contR][cont] = sumaPorPos(m1,m2,contR,cont);
-           sumaMatrices(m1,m2,0,cont+1,res);
-       }
-       
-       return toString(res);
-   }
-   
-   private static int sumaPorPos(int[][] m1, int[][] m2, int renglon, int pos){
-       return  m1[renglon][pos] + m2[renglon][pos];     // asi es diagonal, quiero que se vaya moviendo por renglon o columna.
-   }
   
     public static void main(String[] args) {
         int[][] a1= { {1,4},          // esta notacion es la perrona 
@@ -173,12 +144,6 @@ public class OperacionesArregloBidimensional {
         }
         
         System.out.println("\nSuma por diagonal 3: " + sumaDiagonal(a3));
-
-        System.out.println("\nSuma posicion por posicion: " + sumaPorPos(a3,a4,0,1));
-        
-        System.out.println("\nSuma matrices: " + sumaMatrices(a3,a4));
-        
-        System.out.println("\nSuma matrices: " + sumaMatrices(a1,a5));
         
     }
 }

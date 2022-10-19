@@ -147,29 +147,27 @@ public class ConjuntoA <T> implements ConjuntoADT<T> {
 
     @Override
     public ConjuntoADT<T> interseccion(ConjuntoADT<T> otro) {
-        ConjuntoADT<T> auxBig, auxSmall;
-        
+        ConjuntoADT<T> auxG, auxC;
         
         if(otro == null)
             throw new RuntimeException("Esta vacio");
         if (cardinalidad < otro.getCardinalidad()){
-            auxBig = otro;
-            auxSmall = this;
+            auxG = otro;
+            auxC = this;
         }
         else {
-            auxBig = this;
-            auxSmall = otro;
+            auxG = this;
+            auxC = otro;
         }
         
-        return intersectame(auxBig, auxSmall);
+        return interseccion(auxG, auxC);
     }
     
-    public ConjuntoADT<T> intersectame(ConjuntoADT<T> big, ConjuntoADT<T> small) {
-        ConjuntoA intersectados = null;
+    public ConjuntoADT<T> interseccion(ConjuntoADT<T> grande, ConjuntoADT<T> chico) {
+        ConjuntoA intersectados = new ConjuntoA(this.cardinalidad);
         
-        for (T element : small) {
-            intersectados = new ConjuntoA(this.cardinalidad);
-            if (big.contiene(element)){
+        for (T element : chico) {
+            if (grande.contiene(element)){
                 intersectados.conjunto[intersectados.cardinalidad] = element;
                 intersectados.cardinalidad++;
             }
@@ -182,10 +180,9 @@ public class ConjuntoA <T> implements ConjuntoADT<T> {
 
     @Override
     public ConjuntoADT<T> diferencia(ConjuntoADT<T> otro) {
-        ConjuntoA subt = null;
+        ConjuntoA subt = new ConjuntoA();
         
         for (T element : this) {
-            subt = new ConjuntoA();
             if (!otro.contiene(element)){
                 subt.conjunto[subt.cardinalidad] = element;
                 subt.cardinalidad++;
@@ -193,5 +190,33 @@ public class ConjuntoA <T> implements ConjuntoADT<T> {
         }
         
         return subt;
+    }
+    
+    
+    public static void main(String[] args) {
+        ConjuntoADT<Integer> conj1 = new ConjuntoA();
+        ConjuntoADT<Integer> conj2 = new ConjuntoA();
+        ConjuntoADT<Integer> conj3 = new ConjuntoA();
+        
+        conj1.agrega(2);
+        conj1.agrega(3);
+        conj1.agrega(1);
+        conj1.agrega(5);
+        conj1.agrega(8);
+        
+        conj2.agrega(9);
+        conj2.agrega(3);
+        conj2.agrega(2);
+
+        
+        System.out.println(conj1.toString());
+        System.out.println(conj2.toString());
+        
+        ConjuntoADT<Integer> inter = conj1.interseccion(conj2);
+        
+        System.out.println(inter.toString()); // deberia de imprimir 2 y 3
+        System.out.println(conj1.diferencia(conj2).toString());
+        
+        
     }
 }
