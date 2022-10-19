@@ -6,8 +6,21 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Problema26 {
-    // 2) Obtener el total de alumnos que sólo dominan inglés
     
+    // 1) Generar una cadena con los nombres de todos los alumnos que dominan inglés y francés  
+    public static String inglesYFrances(ConjuntoADT<String> ingles, ConjuntoADT<String> frances){
+        ConjuntoADT<String> inter = ingles.interseccion(frances);
+        String cad = "";
+        
+        if (inter.estaVacio() == true)
+            cad = cad + "Esta vacio";
+        else
+            cad += inter.toString();
+        
+        return cad;
+    }
+    
+    // 2) Obtener el total de alumnos que sólo dominan inglés
     public static int totalIngles(ConjuntoADT<String> ingles ) {
         int n = 0;
         
@@ -21,18 +34,6 @@ public class Problema26 {
     // 3) Generar una cadena con los nombres de los alumnos que dominan, al menos, 3 idiomas.
     public static String tresIdiomas(ConjuntoADT<String> ingles, ConjuntoADT<String> frances, ConjuntoADT<String> otros){
         ConjuntoADT<String> inter = ingles.interseccion(frances).interseccion(otros);
-        String cad = "";
-        
-        if (inter.estaVacio() == true)
-            cad = cad + "Esta vacio";
-        else
-            cad += inter.toString();
-        
-        return cad;
-    }
-    
-    public static String inglesYFrances(ConjuntoADT<String> ingles, ConjuntoADT<String> frances){
-        ConjuntoADT<String> inter = ingles.interseccion(frances);
         String cad = "";
         
         if (inter.estaVacio() == true)
