@@ -7,7 +7,7 @@ public class OperacionesEntreMatrices {
     
     public static int[][] adicionDeMatrices(int[][] mat1,int[][] mat2,int[][] res,int i,int j){
         
-        if (j >= mat1[0].length)
+        if (j == mat1[0].length)
             return res;      // estado base
         
         res[i][j] = mat1[i][j] + mat2[i][j];

@@ -69,6 +69,7 @@ public class ConjuntoA <T> implements ConjuntoADT<T> {
             cardinalidad--;
         } else
             eliminado = null;
+        
         return eliminado;
     }
 

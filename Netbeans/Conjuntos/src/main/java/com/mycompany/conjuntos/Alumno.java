@@ -6,7 +6,7 @@ package com.mycompany.conjuntos;
 
 /**
  *
- * @author coron
+ * @author INTEL
  */
 public class Alumno {
     private double prom;
@@ -25,8 +25,5 @@ public class Alumno {
     public String toString() {
         return "Alumno(" + "prom=" + prom + ", clave=" + clave + ")";
     }
-    
-    
-    
     
 }

@@ -56,36 +56,34 @@ public class OperacionesArregloBidimensional {
    // Problema 3
    // toString(): regresa el contenido del arreglo en forma de cadena.
    public static String toString(int[][] arr){
-       return toString(arr, 0, new StringBuilder());
+       return toString(arr, new StringBuilder(),0,0);
    }
    
-   private static String toString(int[][] arr, int pos, StringBuilder sB){
+   /*
+   for(int[] renglon : res3) {
+    for (int columna : renglon) 
+        System.out.print(columna + "    ");
+    System.out.println();
+    }
+   */
+   private static String toString(int[][] arr, StringBuilder sB, int i, int j){
        
        //if (pos == arr.length) return sB.toString();
-       
-       if (pos < arr.length){
-           sB.append(stringRenglon(arr,pos)).append(" ");
-           toString(arr, pos+1,sB);
-       }
-       
-       return sB.toString();
-   }
-   
-   private static String stringRenglon(int a[][], int renglon){
-       return stringRenglon(a, renglon, 0, new StringBuilder());
-   }
-   
-   private static String stringRenglon(int a[][], int renglon, int pos, StringBuilder sB){
-       
-       if (pos == a.length)
+       if ( j == arr[0].length)
            return sB.toString();
        
-       if (pos < a.length){
-           sB.append(a[renglon][pos]);
-           stringRenglon(a,renglon,pos+1, sB);
+       sB.append(arr[i][j]).append("  ");
+       
+       i++;
+       
+       if (i == arr.length){
+           i = 0;
+           j++;
        }
-       return sB.toString();
+       
+       return toString(arr,sB,i,j);
    }
+   
    
    // Problema 4 
    // sumaDiagonalPrincipal: suma y regresa los elementos de la diagonal principal.
@@ -101,6 +99,32 @@ public class OperacionesArregloBidimensional {
        
        return suma;
    }
+   
+   public static boolean esSimetrica(int[][] mat, int totR, int totC) {
+       if (mat == null)
+           throw new RuntimeException();
+       if (totR == 0 && totC == 0)
+           return true;
+       
+       return esSimetrica(mat, totR,totC, 0,1);
+   }
+   
+   private static boolean esSimetrica(int[][] mat, int totR,int totC, int i, int j){
+       boolean res = false;
+       
+       if (i < totC && j < totC){
+           if(mat[i][j] == mat[j][i])
+               res = true;  
+           else
+               res = false;
+           
+           esSimetrica(mat,totR,totC,i+1,j+1);
+       }
+       
+       
+       return res;
+   }
+           
   
     public static void main(String[] args) {
         int[][] a1= { {1,4},          // esta notacion es la perrona 
@@ -115,16 +139,28 @@ public class OperacionesArregloBidimensional {
                        {1,1,0},
                        {2,0,1}};
         
-        int[][] a5= { {1,4},          // esta notacion es la perrona 
+        int[][] sime1 ={{1,1,2},
+                       {1,1,0},
+                       {2,0,1}};
+        
+        
+        int[][] sime2= { {1,2},          
+                         {2,3} };
+        
+        
+        System.out.println("\nSimetrica: " + esSimetrica(sime1,3,3));
+
+        
+        int[][] a5= { {1,4},          
                       {3,6} };
         
         System.out.println("Length " + a2[0].length);
         
-        for (int i=0;i<2;i++){
-            for (int j=0;j<2;j++){
-                System.out.println(a1[i][j]);
-            }
-        }
+        for(int[] renglon : a3) {
+            for (int columna : renglon)
+                System.out.print(columna + "  ");
+            System.out.println();
+}
         
         System.out.println("\nSuma por renglon: " + sumaPorRenglon(a1, 0));
         System.out.println("\nSuma total por renglon: " + sumaTotalPorRenglon(a1));
@@ -132,7 +168,7 @@ public class OperacionesArregloBidimensional {
         System.out.println("\nSuma por columna: " + sumaPorColumna(a3, 0));
         System.out.println("\nSuma por columna: " + sumaTotalPorColumna(a3));
         
-        System.out.println("\nString: " + toString(a1));
+        System.out.println("\ntoString: " + toString(a1));
         
         System.out.println("\nSuma por diagonal 1: " + sumaDiagonal(a1));
         
