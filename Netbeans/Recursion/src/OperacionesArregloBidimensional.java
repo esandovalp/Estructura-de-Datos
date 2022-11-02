@@ -100,33 +100,53 @@ public class OperacionesArregloBidimensional {
        return suma;
    }
    
-   public static boolean esSimetrica(int[][] mat, int totR, int totC) {
-       if (mat == null)
-           throw new RuntimeException();
-       if (totR == 0 && totC == 0)
-           return true;
-       
-       return esSimetrica(mat, totR,totC, 0,1);
-   }
    
-   private static boolean esSimetrica(int[][] mat, int totR,int totC, int i, int j){
-       boolean res = false;
-       
-       if (i < totC && j < totC){
-           if(mat[i][j] == mat[j][i])
-               res = true;  
-           else
-               res = false;
-           
-           esSimetrica(mat,totR,totC,i+1,j+1);
-       }
-       
-       
-       return res;
-   }
-           
+    public static boolean esSimetrica(int[][] mat, int tam){
+	if (mat == null || tam <= 0)
+            throw new RuntimeException();
+        
+	return esSimetrica (mat, tam, 0, 1);
+    }
+
+    private static boolean esSimetrica(int[][] mat, int tam, int i, int j){
+	if ( i < tam )
+            if (j < tam)
+                if (mat[i][j] == mat[j][i])
+                    return esSimetrica(mat, tam, i, j +1);
+                else
+                    return false;
+            else
+                return esSimetrica(mat,tam,i+1,i+2);        // en el else la j se hizo cero?
+	else
+            return true;
+    }
+
+    // matriz triangular inferior (Arriba de la diagonal son todos ceros)
+    public static boolean esTriangularInferior(int[][] mat, int tam){
+        if (mat == null || tam <= 0)
+            throw new RuntimeException();
+        
+        return esTriangularInferior(mat, tam, 0, 1);
+    }
+    
+    private static boolean esTriangularInferior(int[][] mat, int tam, int i, int j){
+        if ( i < tam ){
+            if (j < tam)
+                if (mat[i][j] == 0)
+                    return esTriangularInferior(mat,tam,i,j+1);
+                else
+                    return false;
+            else
+                return esTriangularInferior(mat,tam,i+1,i+2);
+        } else
+            return true;
+    }
   
     public static void main(String[] args) {
+        int[][] triangular = { {1,0,0},     // (0,0) (0,1) (0,2)
+                               {2,1,0},     // (1,0) (1,1) (1,2)
+                               {1,2,1}};    // (2,0) (2,1) (2,2)
+        
         int[][] a1= { {1,4},          // esta notacion es la perrona 
                       {3,6} };        // primera [] renglon segunda [] columna 
         int[][] a2 = { {1,2,3},     // este caso no funciona 
@@ -147,14 +167,13 @@ public class OperacionesArregloBidimensional {
         int[][] sime2= { {1,2},          
                          {2,3} };
         
-        
-        System.out.println("\nSimetrica: " + esSimetrica(sime1,3,3));
+        System.out.println("Matriz triangular inferior (si es): " + esTriangularInferior(triangular, 3));
+        System.out.println("Matriz triangular inferior (no es): " + esTriangularInferior(sime1, 3));
+        System.out.println("\nSimetrica: " + esSimetrica(sime1,3));
 
         
         int[][] a5= { {1,4},          
                       {3,6} };
-        
-        System.out.println("Length " + a2[0].length);
         
         for(int[] renglon : a3) {
             for (int columna : renglon)

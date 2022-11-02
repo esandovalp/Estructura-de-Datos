@@ -18,10 +18,9 @@ public class Problema17 {
     public static <T> void pilaSinRepetir(Stack<T> pila) {
         Stack<T> aux = new Stack();
         
-      if (pila.empty()) 
-          System.out.println("La pila esta vacia");
       
-      else {
+      
+     
           while(!pila.empty()) {
               aux.push(pila.pop());
               
@@ -36,12 +35,12 @@ public class Problema17 {
               
           }
           
-          while(!aux.empty()){
+          while(!aux.empty())
               pila.push(aux.pop());
-          }
-      }
-      
+          
     }
+      
+    
     
     public static void main(String[] args) {
         Stack<Integer> pila = new Stack();
