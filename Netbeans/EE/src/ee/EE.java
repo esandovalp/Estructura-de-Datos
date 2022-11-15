@@ -211,16 +211,15 @@ public class EE <T>  {
                     actual = actual.getSig();
                 }
                 
-                if (actual.getDato().equals(refer) && ant != null){
+                if (actual.getDato().equals(refer)){
                     Nodo<T> nuevoNodo = new Nodo(nuevo);
                     ant.setSig(nuevoNodo);
                     nuevoNodo.setSig(actual);
                     resp = true;
                 }
             }
-            
+             
         }
-        
         
         return resp;
     }
@@ -255,22 +254,68 @@ public class EE <T>  {
         int total = 0;
         Nodo<T> ant;
         Nodo<T> actual = primero;
+        Nodo<T> aux;
         
-        while (actual.getSig() != null) {
-            
-          ant = actual;
-          
-          while (ant.getSig() != null) 
-              
-            if (actual.getDato().equals(ant.getSig().getDato())) {
-              ant.setSig(ant.getSig().getSig());
-              total++;
-            } else
-                ant = ant.getSig();
-          
-          actual = actual.getSig();
+        if (!this.estaVacia()) {
+            while (actual.getSig() != null) {
+                ant = actual;
+                
+                while (ant.getSig() != null)
+                    if (actual.getDato().equals(ant.getSig().getDato())) {  // romper relación :)
+                        ant.setSig(ant.getSig().getSig());
+                        total++;
+                    } else
+                        ant = ant.getSig();
+                
+                actual = actual.getSig();
+            }
         }
         
         return total;
     }
+    
+    // 45)
+    public void mezclaEE(EE<T> otro) {
+        if (!this.estaVacia() && !otro.estaVacia()) {
+            Nodo<T> actualThis = primero;
+            Nodo<T> actualOtro = otro.primero;
+            Nodo<T> temp1 = null;
+            Nodo<T> temp2 = null;
+            
+            while (actualThis != null && actualOtro != null) {
+                temp1 = actualThis.getSig();
+                temp2 = actualOtro.getSig();
+                actualThis.setSig(actualOtro);
+                actualOtro.setSig(temp1);
+                actualThis = temp1;
+                actualOtro = temp2;
+            }
+            
+            otro.primero = temp2;
+        }
+    }
+    
+    public void merge(EE<T> otro) {
+        Nodo<T> thisActual = primero, otroActual = otro.primero;
+        Nodo<T> actualSig, otroSig;
+  
+        // While there are available positions in p;
+        while (thisActual != null && otroActual != null) {
+  
+            // Save next pointers
+            actualSig = thisActual.getSig();
+            otroSig = otroActual.getSig();
+  
+            // make otroActual as next of thisActual
+            otroActual.setSig(actualSig); // change next pointer of otroActual
+            thisActual.setSig(otroActual); // change next pointer of thisActual
+  
+            // update current pointers for next iteration
+            thisActual = actualSig;
+            otroActual = otroSig;
+       }
+        otro.primero = otroActual;
+    }
+    
 }
+

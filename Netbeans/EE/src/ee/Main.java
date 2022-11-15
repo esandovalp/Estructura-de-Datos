@@ -43,7 +43,7 @@ public class Main {
         System.out.println(ejem1.eliminaAnteriorA(eliA));
         System.out.println(ejem1);
         
-        int aAgregar = 69;
+        int aAgregar = 78;
         int antesDe = 4;
         System.out.println("\nAgrega antes de " + antesDe + ": " + ejem1.insertaAntesQue(antesDe,aAgregar) );
         System.out.println(ejem1);
@@ -81,5 +81,13 @@ public class Main {
         System.out.println("\nEE 3 desordenada: " + ejem3);
         System.out.println("\nElimina todos repetidos desordenado: " + ejem3.eliminaTodosRepetidoDesordenado());
         System.out.println("\n" + ejem3);
+        
+        System.out.println("\nMezcla de EE:");
+        System.out.println("\nEE2: " + ejem2);
+        System.out.println("EE3: " + ejem3);
+        ejem3.merge(ejem2);
+        System.out.println("EE2 y EE3 mezclados: " + ejem3);
+        
+        
     }
 }
