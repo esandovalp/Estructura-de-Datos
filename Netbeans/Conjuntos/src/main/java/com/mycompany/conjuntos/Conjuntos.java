@@ -23,15 +23,15 @@ public class Conjuntos {
         col2.agrega("oro");
         
         System.out.println("\nConjunto de colores: " + col1.toString());
-        System.out.println("\nResultado de agregar el rojo: " + col1.agrega("rojo"));
-        
-        c2.agrega(new Alumno(100,9.5));
+        System.out.println("\nResultado de agregar el rojo: " + col1.agrega("rojo")); // porque ya está 
+
         c2.agrega(new Alumno(101,8.3));
         c2.agrega(new Alumno(120,8.9));
         c2.agrega(new Alumno(50,8.0));
+        c2.agrega(new Alumno(100,9.5));
         c2.agrega(new Alumno(123,7.3));
         c2.agrega(new Alumno(1233,9.3));
-        System.out.println("\nConjunto de alumnos " + c2);
+        System.out.println("\nConjunto de alumnos " + c2.toString());
         
         // Ejemplo del uso del iterador
         Iterator<Alumno> it = c2.iterator();

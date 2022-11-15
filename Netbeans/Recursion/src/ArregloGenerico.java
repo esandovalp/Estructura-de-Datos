@@ -25,21 +25,23 @@ public class ArregloGenerico <T extends Comparable> {
     
     //Problema b
     //Búsqueda binaria: recibe un dato tipo T y regresa la posición en la que está o el negativo de la posición + 1 en la que debería estar.
-    public static <T> int busquedaBinaria(int[] arreglo, int dato, int izq, int der){
-        if (der == 0)
-            return -1;
-        else if (izq <= der){
-            int mid = (izq + der)/2;
-            if (dato < arreglo[mid])
-                return busquedaBinaria(arreglo,dato,izq,mid -1);
-            else if (dato > arreglo[mid])
-                return busquedaBinaria(arreglo,dato,mid +1,der);
-            else
-                return mid;
-        }
+    public static int binarySearchRecursive(int search, int[] array, int start, int end){
+        int middle = (start + end)/2;
+
+        if(end < start)
+                 return -1;
+        
+        if (search < array[middle])
+                return binarySearchRecursive(search, array, start, middle - 1);
+        
+        if (search > array[middle])
+                return binarySearchRecursive(search, array, middle + 1, end);
+
+        if (search == array[middle])
+                return middle;
+		
         return -1;
     }
-    
     //Problema c 
     // toString(): regresa el contenido del arreglo en forma de cadena.
     
@@ -145,8 +147,8 @@ public class ArregloGenerico <T extends Comparable> {
         System.out.println(busquedaSecuencial(a2, 3, totalA2));
         System.out.println(busquedaSecuencial(a3,3, totalA3));
         
-        System.out.println("\nPruebas problema b: ");
-        System.out.println(busquedaBinaria(b1,6,0,totalA1));
+        System.out.println("\nPruebas problema busqueda binaria: ");
+        System.out.println(binarySearchRecursive(6, b1, 0, totalA1));
 
         System.out.println("\nPruebas problema c: ");
         System.out.println(toString(a1));
