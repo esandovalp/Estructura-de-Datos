@@ -3,54 +3,46 @@ public class OperacionesArregloBidimensional {
     //Problema 1
     //sumaPorRenglón: suma por renglón todos los elementos del arreglo bidimensional, regresando la suma obtenida.
     public static int sumaTotalPorRenglon(int[][] arr){
-        return sumaTotalPorRenglon(arr, 0, 0);
+        return sumaTotalPorRenglon(arr, 0,0, 0);
     }
     
-    private static int sumaTotalPorRenglon(int[][] arr, int pos, int suma){
+    private static int sumaTotalPorRenglon(int[][] arr, int i,int j, int suma){
         
-        if (pos < arr[0].length)
-            suma = sumaPorRenglon(arr, pos ) + sumaTotalPorRenglon( arr,  pos+ 1, suma);
+        if (j == arr[0].length)
+            return suma;
         
-        return suma;
+        suma = suma + arr[i][j];
+        
+        i++;
+        
+        if (i == arr.length) {
+            i=0;
+            j++;
+        }
+            
+        return sumaTotalPorRenglon(arr,i,j,suma);
     }
-    
-    private static int sumaPorRenglon(int[][] arr, int renglon){
-       return sumaPorRenglon(arr, renglon, 0, 0);
-   }
-   
-   private static int sumaPorRenglon(int[][] arr, int renglon, int pos, int suma){
-       
-       if (pos < arr.length)
-           suma = arr[renglon][pos] + sumaPorRenglon( arr,  renglon,  pos+1, suma);
-       
-       return  suma;
-   }
    
    // Problema 2 
    // sumaPorColumna: suma por columna todos los elementos del arreglo bidimensional, regresando la suma obtenida.
    public static int sumaTotalPorColumna(int[][] arr) {
-       return sumaTotalPorColumna(arr, 0, 0);
+       return sumaTotalPorColumna(arr, 0, 0,0);
    }
    
-   private static int sumaTotalPorColumna(int[][] arr, int pos, int suma){
+   private static int sumaTotalPorColumna(int[][] arr, int i, int j, int suma){
        
-       if (pos < arr.length)
-           suma =  sumaPorColumna(arr, pos) + sumaTotalPorColumna(arr, pos + 1, suma);
+       if (i == arr.length)
+           return suma;
        
-       return suma;
-   }
-   
-   private static int sumaPorColumna(int[][] arr, int columna){
-       return sumaPorColumna(arr, columna, 0, 0);
-   }
-   
-   private static int sumaPorColumna(int[][] arr, int columna, int pos, int suma) {
+       suma = suma + arr[i][j];
+       j++;
        
-       if (pos < arr.length) {
-           suma =   arr[pos][columna] + sumaPorColumna(arr, columna, pos + 1, suma);
+       if (j == arr[0].length) {
+           j=0;
+           i++;
        }
        
-       return suma;
+       return sumaTotalPorColumna(arr,i,j,suma);
    }
    
    // Problema 3
@@ -181,10 +173,8 @@ public class OperacionesArregloBidimensional {
             System.out.println();
 }
         
-        System.out.println("\nSuma por renglon: " + sumaPorRenglon(a1, 0));
         System.out.println("\nSuma total por renglon: " + sumaTotalPorRenglon(a1));
         
-        System.out.println("\nSuma por columna: " + sumaPorColumna(a3, 0));
         System.out.println("\nSuma por columna: " + sumaTotalPorColumna(a3));
         
         System.out.println("\ntoString: " + toString(a1));
