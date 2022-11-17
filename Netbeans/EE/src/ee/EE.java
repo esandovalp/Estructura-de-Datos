@@ -254,7 +254,6 @@ public class EE <T>  {
         int total = 0;
         Nodo<T> ant;
         Nodo<T> actual = primero;
-        Nodo<T> aux;
         
         if (!this.estaVacia()) {
             while (actual.getSig() != null) {
@@ -279,42 +278,23 @@ public class EE <T>  {
         if (!this.estaVacia() && !otro.estaVacia()) {
             Nodo<T> actualThis = primero;
             Nodo<T> actualOtro = otro.primero;
-            Nodo<T> temp1 = null;
-            Nodo<T> temp2 = null;
+            Nodo<T> sigActual = null;
+            Nodo<T> sigOtro = null;
             
-            while (actualThis != null && actualOtro != null) {
-                temp1 = actualThis.getSig();
-                temp2 = actualOtro.getSig();
+            while (actualThis.getSig() != null && actualOtro.getSig() != null) {
+                sigActual = actualThis.getSig();
+                sigOtro = actualOtro.getSig();
                 actualThis.setSig(actualOtro);
-                actualOtro.setSig(temp1);
-                actualThis = temp1;
-                actualOtro = temp2;
+                actualOtro.setSig(sigActual);
+                actualThis = sigActual;
+                actualOtro = sigOtro;
             }
             
-            otro.primero = temp2;
+            if (actualOtro.getSig() == null)
+                actualOtro.setSig(actualThis);
+            else
+                actualThis.setSig(actualOtro);
         }
-    }
-    
-    public void merge(EE<T> otro) {
-        Nodo<T> thisActual = primero, otroActual = otro.primero;
-        Nodo<T> actualSig, otroSig;
-  
-        // While there are available positions in p;
-        while (thisActual != null && otroActual != null) {
-  
-            // Save next pointers
-            actualSig = thisActual.getSig();
-            otroSig = otroActual.getSig();
-  
-            // make otroActual as next of thisActual
-            otroActual.setSig(actualSig); // change next pointer of otroActual
-            thisActual.setSig(otroActual); // change next pointer of thisActual
-  
-            // update current pointers for next iteration
-            thisActual = actualSig;
-            otroActual = otroSig;
-       }
-        otro.primero = otroActual;
     }
     
     
