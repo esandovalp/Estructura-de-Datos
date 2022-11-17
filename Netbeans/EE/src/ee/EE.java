@@ -317,5 +317,19 @@ public class EE <T>  {
         otro.primero = otroActual;
     }
     
+    
+    public int cuentaElementos(){
+        int res = 1;
+        
+        if (!this.estaVacia()){
+            Nodo<T> actual = primero;
+            while (actual.getSig() != null) {
+                res++;
+                actual = actual.getSig();
+            }
+        }
+        
+        return res;
+    }
 }
 
