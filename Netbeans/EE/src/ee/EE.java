@@ -278,8 +278,8 @@ public class EE <T>  {
         if (!this.estaVacia() && !otro.estaVacia()) {
             Nodo<T> actualThis = primero;
             Nodo<T> actualOtro = otro.primero;
-            Nodo<T> sigActual = null;
-            Nodo<T> sigOtro = null;
+            Nodo<T> sigActual;
+            Nodo<T> sigOtro;
             
             while (actualThis.getSig() != null && actualOtro.getSig() != null) {
                 sigActual = actualThis.getSig();
@@ -296,7 +296,6 @@ public class EE <T>  {
                 actualThis.setSig(actualOtro);
         }
     }
-    
     
     public int cuentaElementos(){
         int res = 1;

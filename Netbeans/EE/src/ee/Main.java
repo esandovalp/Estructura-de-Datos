@@ -85,8 +85,8 @@ public class Main {
         System.out.println("\nMezcla de EE:");
         System.out.println("\nEE2: " + ejem2);
         System.out.println("EE3: " + ejem3);
-        ejem3.mezclaEE(ejem2);         // si quiero que salgan todos tiene que ir primero el grande 
-        System.out.println("EE2 y EE3 mezclados: " + ejem3);
+        ejem2.mezclaEE(ejem3);         // si quiero que salgan todos tiene que ir primero el grande 
+        System.out.println("EE2 y EE3 mezclados: " + ejem2);
         
         EE <String> ejem5 = new EE();
         ejem5.agregaFinal("uno");

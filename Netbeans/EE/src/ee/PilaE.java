@@ -5,15 +5,15 @@ public class PilaE <T> {
     private final EE<T> pila;
 
     public PilaE() {
-        pila = new EE();                 
+        pila = new EE();   
     }
     
     public void push(T dato) {
-        pila.agregaFinal(dato);
+        pila.agregaInicio(dato);
     }
     
     public T pop() {
-        return pila.quitaUltimo();
+        return pila.quitaPrimero();
     }
     
     public boolean isEmpty() {
@@ -22,8 +22,8 @@ public class PilaE <T> {
 
     
     public T peek() {
-        T res = pila.quitaUltimo();
-        pila.agregaFinal(res);
+        T res = pila.quitaPrimero();
+        pila.agregaInicio(res);
         return res;
     }
 
