@@ -19,13 +19,13 @@ public class ListaOrdenada <T extends Comparable<T>> extends Lista<T> implements
                     ultimo = nuevo;
                 } else {
                     NodoDoble<T> actual = primero.getSiguiente(); 
-                    while (actual.getDato().compareTo(dato) < 0){
+                    while (actual.getDato().compareTo(dato) < 0)
                         actual = actual.getSiguiente();
-                    }
+                    
                     nuevo.setAnterior(actual.getAnterior());
                     nuevo.setSiguiente(actual);
                     actual.getAnterior().setSiguiente(nuevo);
-                    actual.getSiguiente().setAnterior(nuevo);
+                    actual.setAnterior(nuevo);
                 }
     }
     

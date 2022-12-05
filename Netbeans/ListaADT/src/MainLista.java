@@ -13,5 +13,10 @@ public class MainLista {
         int suma, cont;
     
         listaOrdenada1.agrega(11);
+        listaOrdenada1.agrega(12);
+        listaOrdenada1.agrega(13);
+        listaOrdenada1.agrega(10);
+        
+        System.out.println(listaOrdenada1.toString());
     }
 }

@@ -10,6 +10,8 @@ public class NodoDoble <T> {
     }
     
     public NodoDoble(T dato) {
+        this();
+        this.dato = dato;
     }
 
     public NodoDoble(T dato, NodoDoble<T> siguiente, NodoDoble<T> anterior) {
